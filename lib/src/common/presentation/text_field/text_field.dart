@@ -34,7 +34,7 @@ class _SearchTextFieldState extends State<TextCustomTextField> {
 
   @override
   Widget build(BuildContext context) {
-    final textStyle = widget.style ?? kContentTextStyle.copyWith(fontWeight: FontWeight.w400);
+    final textStyle = widget.style ?? AppStyles.contentTextStyle(context).copyWith(fontWeight: FontWeight.w400);
 
     return TextFormField(
       keyboardType: widget.textInputType,
@@ -47,11 +47,11 @@ class _SearchTextFieldState extends State<TextCustomTextField> {
       autofillHints: widget.autofillHints,
       controller: _controller,
       maxLength: widget.maxLength,
-      cursorColor: kCharcoalPrimary,
-      decoration: kTextFieldInputDecoration.copyWith(
+      cursorColor: Theme.of(context).colorScheme.onSurface,
+      decoration: AppStyles.textFieldInputDecoration(context).copyWith(
         labelText: widget.labelText,
         hintText: widget.hintText,
-        labelStyle: kCaptionTextStyle.copyWith(color: kCharcoalPrimary),
+        labelStyle: AppStyles.captionTextStyle(context).copyWith(color: kCharcoalPrimary),
       ),
       style: textStyle,
       inputFormatters: widget.inputFormatters,

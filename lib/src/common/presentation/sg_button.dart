@@ -35,7 +35,7 @@ class SGButton extends StatelessWidget {
             ),
           Text(
             txtLabel,
-            style: textStyle ?? kCustomButtonTextStyle,
+            style: textStyle ?? AppStyles.customButtonTextStyle(),
           ),
         ],
       ),
