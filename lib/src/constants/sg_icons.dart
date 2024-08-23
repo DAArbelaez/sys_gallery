@@ -9,6 +9,8 @@ const kRefreshIcon = Icon(Icons.refresh, color: kWhite);
 
 const kArrowBackIcon = Icon(Icons.arrow_back, color: kWhite);
 
+const kSearchIcon = Icon(Icons.search, color: kCharcoalPrimary);
+
 const kAddDarkIcon = Icon(Icons.add, color: kDark, size: 44);
 
 const kCloseIcon = Icon(Icons.close, color: kSilver);
