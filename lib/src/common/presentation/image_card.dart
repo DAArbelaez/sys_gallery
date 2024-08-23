@@ -20,7 +20,7 @@ class ImageCard extends StatelessWidget {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(5),
-            child: Image.memory(
+            child: image.imageBase64.isEmpty ? const SizedBox.shrink()  : Image.memory(
               base64Decode(image.imageBase64),
               fit: BoxFit.cover,
             ),
