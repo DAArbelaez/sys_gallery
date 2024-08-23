@@ -10,8 +10,8 @@ ImageDataModel _$ImageDataModelFromJson(Map<String, dynamic> json) =>
     ImageDataModel(
       id: json['id'] as String,
       title: json['title'] as String,
-      description: json['description'] as String?,
-      imageBase64: json['imageBase64'] as String?,
+      description: json['description'] as String,
+      imageBase64: json['imageBase64'] as String,
     );
 
 Map<String, dynamic> _$ImageDataModelToJson(ImageDataModel instance) =>

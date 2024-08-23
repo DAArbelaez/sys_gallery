@@ -10,7 +10,7 @@ import 'package:sys_gallery/src/common/presentation/custom_confirm_dialog.dart';
 import 'package:sys_gallery/src/common/presentation/loading_dialog.dart';
 import 'package:sys_gallery/src/constants/button_style_constants.dart';
 import 'package:sys_gallery/src/constants/sg_icons.dart';
-import 'package:sys_gallery/src/features/images/add_image/domain/image_data_model.dart';
+import 'package:sys_gallery/src/features/common/domain/image_data_model.dart';
 import 'package:sys_gallery/src/utils/base_provider.dart';
 import 'package:sys_gallery/src/utils/error_handler.dart';
 
