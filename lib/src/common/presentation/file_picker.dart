@@ -27,12 +27,15 @@ class FilePicker extends StatelessWidget {
         child: Container(
           height: 150,
           width: double.infinity,
-          color: kMediumDark,
+          decoration: BoxDecoration(
+              color: kMediumDark,
+            borderRadius: BorderRadiusDirectional.circular(5),
+          ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               kAddDarkIcon,
-              Text("Añadir imagen", style: kContentTextStyle.copyWith(color: kDark, fontWeight: FontWeight.w600)),
+              Text("Añadir imagen", style: AppStyles.contentTextStyle(context).copyWith(color: kDark, fontWeight: FontWeight.w600)),
             ],
           ),
         ),

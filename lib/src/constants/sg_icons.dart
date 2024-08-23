@@ -7,6 +7,10 @@ const kAddIcon = Icon(Icons.add, color: kWhite);
 
 const kRefreshIcon = Icon(Icons.refresh, color: kWhite);
 
+const kDarkModeIcon = Icon(Icons.dark_mode, color: kWhite);
+
+const kLightModeIcon = Icon(Icons.light_mode, color: kWhite);
+
 const kArrowBackIcon = Icon(Icons.arrow_back, color: kWhite);
 
 const kSearchIcon = Icon(Icons.search, color: kCharcoalPrimary);

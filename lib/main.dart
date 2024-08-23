@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 import 'package:sys_gallery/firebase/firebase_options.dart';
 import 'package:sys_gallery/src/common/navigation/go_router.dart';
 import 'package:sys_gallery/src/common/navigation/providers.dart';
+import 'package:sys_gallery/src/common/provider/handle_theme.dart';
 import 'package:sys_gallery/src/constants/app_colors_constants.dart';
+import 'package:sys_gallery/src/themes/dark_theme.dart';
 import 'package:sys_gallery/src/themes/light_theme.dart';
 
 void main() async {
@@ -45,12 +47,16 @@ class MyApp extends StatelessWidget {
 
     return MultiProvider(
       providers: appProviders,
-      child: MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        themeMode: ThemeMode.light,
-        theme: lightTheme,
-        routerConfig: appRoutes,
-      ),
+      child: Builder(builder: (context) {
+        final themeProvider = Provider.of<HandleThemeProvider>(context);
+
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          themeMode: themeProvider.themeMode,
+          theme: themeProvider.themeMode == ThemeMode.light ? lightTheme : darkTheme,
+          routerConfig: appRoutes,
+        );
+      }),
     );
   }
 }

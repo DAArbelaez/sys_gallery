@@ -57,7 +57,7 @@ class CustomConfirmDialog extends StatelessWidget {
                   const SizedBox(height: 20),
                   Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 35),
-                      child: Text(message, style: kSubtitleTextStyle.copyWith(fontWeight: FontWeight.w300))),
+                      child: Text(message, style: AppStyles.subtitleTextStyle(context).copyWith(fontWeight: FontWeight.w300, color: kCharcoalPrimary))),
                   const SizedBox(height: 30),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12),

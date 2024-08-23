@@ -27,13 +27,13 @@ class ImageCard extends StatelessWidget {
           ),
           Text(
             image.title,
-            style: kContentTextStyle.copyWith(fontWeight: FontWeight.w500),
+            style: AppStyles.contentTextStyle(context).copyWith(fontWeight: FontWeight.w500),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           Text(
             image.description,
-            style: kCaptionTextStyle,
+            style: AppStyles.captionTextStyle(context),
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
           ),

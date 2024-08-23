@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sys_gallery/src/common/presentation/image_card.dart';
 import 'package:sys_gallery/src/common/presentation/text_field/text_field.dart';
+import 'package:sys_gallery/src/common/provider/handle_theme.dart';
 import 'package:sys_gallery/src/constants/app_colors_constants.dart';
 import 'package:sys_gallery/src/constants/cm_constants.dart';
 import 'package:sys_gallery/src/constants/sg_icons.dart';
@@ -30,6 +31,8 @@ class _ImageListScreenState extends State<ImageListScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = Provider.of<HandleThemeProvider>(context);
+
     return Scaffold(
       appBar: CustomAppBar(
         onTextChange: (query) {
@@ -40,6 +43,13 @@ class _ImageListScreenState extends State<ImageListScreen> {
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          FloatingActionButton(
+            onPressed: () => themeProvider.toggleTheme(),
+            backgroundColor: kRoyalBluePrimary,
+            shape: const StadiumBorder(),
+            child: themeProvider.themeMode == ThemeMode.light ? kLightModeIcon : kDarkModeIcon,
+          ),
+          const SizedBox(height: 5),
           FloatingActionButton(
             onPressed: () => context.read<ImageListController>().fetchImages(),
             backgroundColor: kRoyalBluePrimary,
@@ -55,7 +65,7 @@ class _ImageListScreenState extends State<ImageListScreen> {
           ),
         ],
       ),
-      backgroundColor: kLightSilver,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       body: Padding(
         padding: kPagePadding,
         child: Consumer<ImageListController>(
@@ -80,7 +90,7 @@ class _ImageListScreenState extends State<ImageListScreen> {
                 );
               case ProviderState.dataNotFound:
                 return Center(
-                    child: Text("No se encontró información", style: kSubtitleTextStyle.copyWith(color: kDark)));
+                    child: Text("No se encontró información", style: AppStyles.subtitleTextStyle(context).copyWith(color: kDark)));
               default:
                 return const Center(child: CircularProgressIndicator());
             }
@@ -123,7 +133,7 @@ class CustomAppBarState extends State<CustomAppBar> {
     );
 
     return AppBar(
-      backgroundColor: kLightSilver,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       title: Visibility(
         visible: !_showSearchField,
         replacement: Row(
@@ -136,7 +146,7 @@ class CustomAppBarState extends State<CustomAppBar> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Sys Gallery', style: kSubtitleTextStyle.copyWith(fontWeight: FontWeight.w600)),
+            Text('Sys Gallery', style: AppStyles.subtitleTextStyle(context).copyWith(fontWeight: FontWeight.w600)),
             toggleButton,
           ],
         ),

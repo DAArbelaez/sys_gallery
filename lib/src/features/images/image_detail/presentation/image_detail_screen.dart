@@ -40,7 +40,7 @@ class ImageDetailScreen extends StatelessWidget {
           ),
         ),
         extendBodyBehindAppBar: true,
-        backgroundColor: kLightSilver,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         body: SingleChildScrollView(
           physics: const AlwaysScrollableScrollPhysics(),
           child: Column(
@@ -56,9 +56,9 @@ class ImageDetailScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(image.title, style: kMediumTitleTextStyle.copyWith(fontWeight: FontWeight.w600)),
+                    Text(image.title, style: AppStyles.mediumTitleTextStyle(context).copyWith(fontWeight: FontWeight.w600)),
                     const SizedBox(height: 10),
-                    Text(image.description, style: kSubtitleTextStyle.copyWith(fontWeight: FontWeight.w400)),
+                    Text(image.description, style: AppStyles.subtitleTextStyle(context).copyWith(fontWeight: FontWeight.w400)),
                   ],
                 ),
               )
