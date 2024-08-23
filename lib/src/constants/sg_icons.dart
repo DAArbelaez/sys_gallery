@@ -5,6 +5,8 @@ import 'package:sys_gallery/src/constants/app_colors_constants.dart';
 
 const kAddIcon = Icon(Icons.add, color: kWhite);
 
+const kRefreshIcon = Icon(Icons.refresh, color: kWhite);
+
 const kAddDarkIcon = Icon(Icons.add, color: kDark, size: 44);
 
 const kCloseIcon = Icon(Icons.close, color: kSilver);

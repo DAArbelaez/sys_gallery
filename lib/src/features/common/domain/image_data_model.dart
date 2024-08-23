@@ -8,9 +8,9 @@ class ImageDataModel {
 
   final String title;
 
-  final String? description;
+  final String description;
 
-  final String? imageBase64;
+  final String imageBase64;
 
   const ImageDataModel({
     required this.id,
