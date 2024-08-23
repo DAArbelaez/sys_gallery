@@ -3,6 +3,7 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:sys_gallery/src/common/presentation/image_card.dart';
+import 'package:sys_gallery/src/common/presentation/text_field/text_field.dart';
 import 'package:sys_gallery/src/constants/app_colors_constants.dart';
 import 'package:sys_gallery/src/constants/cm_constants.dart';
 import 'package:sys_gallery/src/constants/sg_icons.dart';
@@ -30,10 +31,11 @@ class _ImageListScreenState extends State<ImageListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: kLightSilver,
-        title: Text("Sys Gallery", style: kSubtitleTextStyle.copyWith(fontWeight: FontWeight.w600)),
-        centerTitle: true,
+      appBar: CustomAppBar(
+        onTextChange: (query) {
+          if(query == null) return;
+          context.read<ImageListController>().filterImagesByTitle(query);
+        },
       ),
       floatingActionButton: Column(
         mainAxisSize: MainAxisSize.min,
@@ -60,7 +62,7 @@ class _ImageListScreenState extends State<ImageListScreen> {
           builder: (context, ref, child) {
             switch (ref.getCurrentState) {
               case ProviderState.success:
-                final list = ref.imageList;
+                final list = ref.imageListFiltered;
 
                 return RefreshIndicator(
                   onRefresh: () => ref.fetchImages(),
@@ -83,6 +85,60 @@ class _ImageListScreenState extends State<ImageListScreen> {
                 return const Center(child: CircularProgressIndicator());
             }
           },
+        ),
+      ),
+    );
+  }
+}
+
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+  const CustomAppBar({super.key, required this.onTextChange});
+
+  final Function(String?) onTextChange;
+
+  @override
+  CustomAppBarState createState() => CustomAppBarState();
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}
+
+class CustomAppBarState extends State<CustomAppBar> {
+  bool _showSearchField = false;
+
+  void _toggleSearchField() {
+    setState(() {
+      _showSearchField = !_showSearchField;
+      if(!_showSearchField) {
+        context.read<ImageListController>().filterImagesByTitle("");
+      }
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final toggleButton = GestureDetector(
+      onTap: _toggleSearchField,
+      child: Icon(_showSearchField ? Icons.close : Icons.search),
+    );
+
+    return AppBar(
+      backgroundColor: kLightSilver,
+      title: Visibility(
+        visible: !_showSearchField,
+        replacement: Row(
+          children: [
+            Expanded(child: TextCustomTextField(onTextChange: widget.onTextChange)),
+            const SizedBox(width: 10),
+            toggleButton,
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text('Sys Gallery', style: kSubtitleTextStyle.copyWith(fontWeight: FontWeight.w600)),
+            toggleButton,
+          ],
         ),
       ),
     );

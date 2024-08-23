@@ -8,6 +8,8 @@ class ImageListController extends BaseProvider {
 
   List<ImageDataModel> imageList = [];
 
+  List<ImageDataModel> imageListFiltered = [];
+
   Future<void> fetchImages() async {
     try {
       setState(ProviderState.loading);
@@ -30,17 +32,29 @@ class ImageListController extends BaseProvider {
           });
         }).toList();
 
-        imageList = list;
+        imageList = [...list];
+        imageListFiltered = [...list];
 
         if (isDisposed) return;
         setState(ProviderState.success);
       } else {
         imageList = [];
+        imageListFiltered = [];
+
         if (isDisposed) return;
         setState(ProviderState.dataNotFound);
       }
     } catch (e) {
+      imageList = [];
+      imageListFiltered = [];
+
       _errorHandler.handleAndRecordError(error: e, functionName: "fetchImages");
     }
+  }
+
+  void filterImagesByTitle(String query) {
+    // FIXME: Add debouncer
+    imageListFiltered = imageList.where((image) => image.title.toLowerCase().contains(query.toLowerCase())).toList();
+    notifyListeners();
   }
 }
