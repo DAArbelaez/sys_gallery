@@ -1,8 +1,10 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:sys_gallery/src/constants/text_constants.dart';
 import 'package:sys_gallery/src/features/common/domain/image_data_model.dart';
+import 'package:sys_gallery/src/features/images/image_detail/presentation/image_detail_screen.dart';
 
 class ImageCard extends StatelessWidget {
   const ImageCard(this.image, {super.key});
@@ -11,7 +13,8 @@ class ImageCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return GestureDetector(
+      onTap: () => context.push(ImageDetailScreen.path, extra: image),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
